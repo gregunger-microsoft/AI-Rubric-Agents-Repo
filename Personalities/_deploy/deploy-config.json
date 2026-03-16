@@ -1,0 +1,48 @@
+{
+    "project_endpoint": "",
+    "model_deployment_name": "gpt-4o",
+    "personalities_root": "../",
+    "agent_name_prefix": "Personality",
+    "personas": {
+        "Chaplain-Hospital": {
+            "enabled": true,
+            "agent_name": "Personality-Chaplain-Hospital"
+        },
+        "Doctor-EmergencyMedicine": {
+            "enabled": true,
+            "agent_name": "Personality-Doctor-EmergencyMedicine"
+        },
+        "Electrician-Commercial": {
+            "enabled": true,
+            "agent_name": "Personality-Electrician-Commercial"
+        },
+        "Firefighter-Captain": {
+            "enabled": true,
+            "agent_name": "Personality-Firefighter-Captain"
+        },
+        "Lawyer-CriminalDefense": {
+            "enabled": true,
+            "agent_name": "Personality-Lawyer-CriminalDefense"
+        },
+        "Nurse-ICU": {
+            "enabled": true,
+            "agent_name": "Personality-Nurse-ICU"
+        },
+        "Plumber-Residential": {
+            "enabled": true,
+            "agent_name": "Personality-Plumber-Residential"
+        },
+        "PoliceOfficer-Patrol": {
+            "enabled": true,
+            "agent_name": "Personality-PoliceOfficer-Patrol"
+        },
+        "Politician-CityCouncil": {
+            "enabled": true,
+            "agent_name": "Personality-Politician-CityCouncil"
+        },
+        "Teacher-HighSchool": {
+            "enabled": true,
+            "agent_name": "Personality-Teacher-HighSchool"
+        }
+    }
+}
