@@ -1,0 +1,54 @@
+{
+  "workflows": [
+    {
+      "id": "create_contact",
+      "intent": "Create",
+      "steps": [
+        { "type": "collect_fields", "required": ["displayName", "phones[0].label", "phones[0].number", "addresses[0].label", "addresses[0].line1", "addresses[0].city", "addresses[0].region", "addresses[0].postalCode", "addresses[0].country"] },
+        { "type": "validate_against_schema", "schemaRef": "data_model.schema.json#/$defs/contact" },
+        { "type": "read_store_for_etag", "tool": "Storage.GetStore" },
+        { "type": "upsert", "tool": "Storage.UpsertContact" },
+        { "type": "confirm", "messageKey": "CONTACT_CREATED" }
+      ]
+    },
+    {
+      "id": "read_contact",
+      "intent": "Read",
+      "steps": [
+        { "type": "resolve_contact", "strategy": ["by_contactId", "by_exact_displayName", "by_search_then_disambiguate"] },
+        { "type": "show_contact", "fields": ["displayName", "phones", "emails", "addresses", "tags", "notes"] }
+      ]
+    },
+    {
+      "id": "update_contact",
+      "intent": "Update",
+      "steps": [
+        { "type": "resolve_contact", "strategy": ["by_contactId", "by_exact_displayName", "by_search_then_disambiguate"] },
+        { "type": "apply_patch", "patchRules": "Only modify fields explicitly referenced by the user." },
+        { "type": "validate_against_schema", "schemaRef": "data_model.schema.json#/$defs/contact" },
+        { "type": "read_store_for_etag", "tool": "Storage.GetStore" },
+        { "type": "upsert", "tool": "Storage.UpsertContact" },
+        { "type": "confirm", "messageKey": "CONTACT_UPDATED" }
+      ]
+    },
+    {
+      "id": "delete_contact",
+      "intent": "Delete",
+      "steps": [
+        { "type": "resolve_contact", "strategy": ["by_contactId", "by_exact_displayName", "by_search_then_disambiguate"] },
+        { "type": "read_store_for_etag", "tool": "Storage.GetStore" },
+        { "type": "delete", "tool": "Storage.DeleteContact" },
+        { "type": "confirm", "messageKey": "CONTACT_DELETED" }
+      ]
+    },
+    {
+      "id": "list_or_search",
+      "intent": "ListSearch",
+      "steps": [
+        { "type": "build_query", "defaults": { "limit": 20 } },
+        { "type": "query", "tool": "Storage.QueryContacts" },
+        { "type": "render_list", "fields": ["contactId", "displayName", "phones[0].number"], "pagination": true }
+      ]
+    }
+  ]
+}

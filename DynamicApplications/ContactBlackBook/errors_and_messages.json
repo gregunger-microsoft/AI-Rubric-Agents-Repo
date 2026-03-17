@@ -1,0 +1,14 @@
+{
+  "messages": {
+    "CONTACT_CREATED": "Saved contact.",
+    "CONTACT_UPDATED": "Updated contact.",
+    "CONTACT_DELETED": "Deleted contact.",
+    "AUTH_REQUIRED": "I need you to sign in or connect permissions before I can access your contacts store.",
+    "CONFLICT_ETAG": "Your contacts changed since I last read them. I can refresh and try again.",
+    "VALIDATION_FAILED": "Some required fields are missing or invalid. Tell me what to correct."
+  },
+  "rendering": {
+    "maskPhone": true,
+    "maskStrategy": "last4"
+  }
+}

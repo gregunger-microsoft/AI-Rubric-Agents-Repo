@@ -1,0 +1,20 @@
+{
+  "app": {
+    "name": "Contacts Address Book",
+    "version": "1.0.0",
+    "domain": "contacts_crud_app",
+    "storageModesSupported": ["onedrive_file", "backend_datastore"],
+    "defaultStorageMode": "onedrive_file"
+  },
+  "loadOrder": [
+    "MASTER_PROMPT.md",
+    "data_model.schema.json",
+    "tool_contracts.json",
+    "menus.metadata.json",
+    "crud_workflows.metadata.json",
+    "validation_and_heuristics.json",
+    "security_and_compliance.metadata.json",
+    "errors_and_messages.json",
+    "test_scenarios.json"
+  ]
+}

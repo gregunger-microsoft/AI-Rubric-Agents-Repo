@@ -1,0 +1,49 @@
+{
+  "heuristics": {
+    "normalization": {
+      "trimWhitespace": true,
+      "collapseInnerSpaces": true,
+      "phoneNumber": {
+        "strategy": "preserve_user_format_but_strip_illegal_chars",
+        "allowedChars": "+0123456789()- .x"
+      }
+    },
+    "deduplication": {
+      "enabled": true,
+      "matchRules": [
+        { "type": "strong", "fields": ["displayName", "phones[*].number"] },
+        { "type": "weak", "fields": ["emails[*]"] }
+      ],
+      "onMatch": "ask_user_to_confirm_merge_or_create_separate"
+    },
+    "disambiguation": {
+      "maxCandidatesBeforeAsk": 5,
+      "askFor": ["last4_phone", "city", "tag"]
+    },
+    "concurrency": {
+      "mode": "optimistic",
+      "onEtagConflict": [
+        "re-fetch store",
+        "re-apply patch if safe",
+        "otherwise ask user to retry"
+      ]
+    },
+    "determinism": {
+      "idGeneration": "stable_ulid_or_platform_guid",
+      "timeSource": "platform_now",
+      "sorting": { "default": "displayName_asc" }
+    }
+  },
+  "validation": {
+    "requiredMinimum": {
+      "phones": 1,
+      "addresses": 1
+    },
+    "maxLimits": {
+      "emails": 10,
+      "phones": 10,
+      "addresses": 5,
+      "tags": 20
+    }
+  }
+}

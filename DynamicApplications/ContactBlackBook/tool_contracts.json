@@ -1,0 +1,139 @@
+{
+  "toolingModel": "declarative_contracts_v1",
+  "tools": [
+    {
+      "name": "Storage.GetStore",
+      "description": "Fetch the current address book store object and contacts list.",
+      "inputsSchema": {
+        "type": "object",
+        "required": ["storageMode"],
+        "properties": {
+          "storageMode": { "type": "string", "enum": ["onedrive_file", "backend_datastore"] }
+        },
+        "additionalProperties": false
+      },
+      "outputsSchema": {
+        "type": "object",
+        "required": ["ok"],
+        "properties": {
+          "ok": { "type": "boolean" },
+          "store": { "type": ["object", "null"] },
+          "error": { "type": ["object", "null"] }
+        }
+      }
+    },
+    {
+      "name": "Storage.UpsertContact",
+      "description": "Create or update a contact. If contactId exists -> update; else create new.",
+      "inputsSchema": {
+        "type": "object",
+        "required": ["storageMode", "contact", "concurrency"],
+        "properties": {
+          "storageMode": { "type": "string", "enum": ["onedrive_file", "backend_datastore"] },
+          "contact": { "$ref": "contacts.addressbook.schema.v1#/$defs/contact" },
+          "concurrency": {
+            "type": "object",
+            "required": ["etag"],
+            "properties": { "etag": { "type": "string" } },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "outputsSchema": {
+        "type": "object",
+        "required": ["ok"],
+        "properties": {
+          "ok": { "type": "boolean" },
+          "savedContact": { "type": ["object", "null"] },
+          "newEtag": { "type": ["string", "null"] },
+          "error": { "type": ["object", "null"] }
+        }
+      }
+    },
+    {
+      "name": "Storage.DeleteContact",
+      "description": "Delete a contact by contactId (soft delete if supported; otherwise hard delete).",
+      "inputsSchema": {
+        "type": "object",
+        "required": ["storageMode", "contactId", "concurrency"],
+        "properties": {
+          "storageMode": { "type": "string", "enum": ["onedrive_file", "backend_datastore"] },
+          "contactId": { "type": "string" },
+          "concurrency": {
+            "type": "object",
+            "required": ["etag"],
+            "properties": { "etag": { "type": "string" } },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "outputsSchema": {
+        "type": "object",
+        "required": ["ok"],
+        "properties": {
+          "ok": { "type": "boolean" },
+          "deleted": { "type": ["boolean", "null"] },
+          "newEtag": { "type": ["string", "null"] },
+          "error": { "type": ["object", "null"] }
+        }
+      }
+    },
+    {
+      "name": "Storage.QueryContacts",
+      "description": "Search/list contacts using filters and pagination.",
+      "inputsSchema": {
+        "type": "object",
+        "required": ["storageMode", "query"],
+        "properties": {
+          "storageMode": { "type": "string", "enum": ["onedrive_file", "backend_datastore"] },
+          "query": {
+            "type": "object",
+            "required": ["text"],
+            "properties": {
+              "text": { "type": "string" },
+              "tagsAny": { "type": "array", "items": { "type": "string" } },
+              "limit": { "type": "integer", "minimum": 1, "maximum": 100 },
+              "cursor": { "type": ["string", "null"] }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "outputsSchema": {
+        "type": "object",
+        "required": ["ok"],
+        "properties": {
+          "ok": { "type": "boolean" },
+          "results": { "type": ["array", "null"] },
+          "nextCursor": { "type": ["string", "null"] },
+          "error": { "type": ["object", "null"] }
+        }
+      }
+    }
+  ],
+  "errorShape": {
+    "type": "object",
+    "required": ["code", "message"],
+    "properties": {
+      "code": {
+        "type": "string",
+        "enum": [
+          "AUTH_REQUIRED",
+          "FORBIDDEN",
+          "NOT_FOUND",
+          "CONFLICT_ETAG",
+          "VALIDATION_FAILED",
+          "RATE_LIMITED",
+          "BACKEND_UNAVAILABLE",
+          "UNKNOWN"
+        ]
+      },
+      "message": { "type": "string" },
+      "details": { "type": ["object", "null"] }
+    },
+    "additionalProperties": false
+  }
+}

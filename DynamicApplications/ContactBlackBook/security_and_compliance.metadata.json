@@ -1,0 +1,32 @@
+{
+  "policies": {
+    "pii_handling": {
+      "containsPII": true,
+      "rules": [
+        "Do not log full phone numbers or addresses in debug output.",
+        "Do not echo more PII than needed to confirm user intent.",
+        "Mask sensitive values in summaries (e.g., phone: ***-***-1234)."
+      ]
+    },
+    "credentials_and_secrets": {
+      "rules": [
+        "Never embed credentials, API keys, or tokens in outputs.",
+        "Use platform-provided auth and connections only.",
+        "If auth is missing, return an AUTH_REQUIRED error response envelope."
+      ]
+    },
+    "least_privilege": {
+      "rules": [
+        "Request only the minimum scopes/permissions required by the selected storageMode.",
+        "Prefer per-user storage scope unless user explicitly requests shared."
+      ]
+    },
+    "environment_guidance": {
+      "rules": [
+        "If running in a personal/dev environment, prefer synthetic data for PII use cases unless user confirms real data usage.",
+        "For enterprise/LOB use, assume a managed/custom environment with appropriate reviews."
+      ],
+      "sourceNote": "Align to internal Copilot Studio agent guidance (data sensitivity, environment selection, access control, no hard-coded secrets)."
+    }
+  }
+}

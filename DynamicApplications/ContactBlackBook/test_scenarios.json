@@ -1,0 +1,29 @@
+{
+  "scenarios": [
+    {
+      "name": "Create minimal contact",
+      "input": "Add contact Jane Doe, mobile 702-555-0123, home address 1 Main St, Las Vegas, NV 89101, US",
+      "expected": { "action": "Storage.UpsertContact", "result": "ok=true" }
+    },
+    {
+      "name": "Search then disambiguate",
+      "input": "Find John",
+      "expected": { "action": "Storage.QueryContacts", "then": "ask_disambiguation_if_multiple" }
+    },
+    {
+      "name": "Update only specified field",
+      "input": "Change Jane Doe mobile to 702-555-9999",
+      "expected": { "patchRule": "only modify phones", "othersUnchanged": true }
+    },
+    {
+      "name": "Delete by name with confirmation if ambiguous",
+      "input": "Delete Alex",
+      "expected": { "disambiguation": "required_if_multiple", "action": "Storage.DeleteContact" }
+    },
+    {
+      "name": "ETag conflict",
+      "input": "Update Jane Doe address to 2 Main St ... while store etag changed",
+      "expected": { "error": "CONFLICT_ETAG", "behavior": "refresh_then_retry_or_ask_user" }
+    }
+  ]
+}

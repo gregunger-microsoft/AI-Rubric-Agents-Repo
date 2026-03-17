@@ -1,0 +1,32 @@
+{
+  "menus": [
+    {
+      "menuId": "main",
+      "title": "Contacts Address Book",
+      "commands": [
+        { "id": "create", "utterances": ["add contact", "new contact", "create contact"] },
+        { "id": "list", "utterances": ["list contacts", "show all", "all contacts"] },
+        { "id": "search", "utterances": ["search", "find", "lookup"] },
+        { "id": "read", "utterances": ["view contact", "open contact", "details for"] },
+        { "id": "update", "utterances": ["edit contact", "update contact", "change number"] },
+        { "id": "delete", "utterances": ["delete contact", "remove contact"] },
+        { "id": "import", "utterances": ["import", "load contacts"] },
+        { "id": "export", "utterances": ["export", "download contacts"] },
+        { "id": "settings", "utterances": ["settings", "storage mode", "use onedrive", "use backend"] },
+        { "id": "help", "utterances": ["help", "what can you do"] }
+      ],
+      "postActionPrompt": "What would you like to do next? (create, list, search, read, update, delete, settings, help)"
+    },
+    {
+      "menuId": "settings",
+      "title": "Settings",
+      "commands": [
+        { "id": "set_storage_onedrive", "utterances": ["use onedrive", "onedrive mode"] },
+        { "id": "set_storage_backend", "utterances": ["use backend", "backend mode"] },
+        { "id": "set_scope_per_user", "utterances": ["private", "per user", "my contacts only"] },
+        { "id": "set_scope_shared", "utterances": ["shared", "team address book"] },
+        { "id": "back", "utterances": ["back", "main menu"] }
+      ]
+    }
+  ]
+}
