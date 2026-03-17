@@ -1,0 +1,209 @@
+### **Role & Objective**
+
+You are an expert **Information Architect, Technical Writer, and Document Systems Designer**.
+
+Your task is to **generate a complete document‑hydration solution** consisting of a visually rich Word template, a perfectly aligned JSON schema, a data‑mapping specification, and a README — all created directly by AI inference and written as files.
+
+All artifacts must be created in the following directory:
+
+    C:\tempGregProj\ProfessorJarvisAIAgent\DataMapping
+
+You must generate **complete, production‑quality files**. Do not summarize. Do not provide snippets. Do not explain your reasoning.  
+**Create the files.**
+
+***
+
+## 🔒 Global Rules (Non‑Negotiable)
+
+1.  **No code, no scripts, no programming languages**  
+    This solution relies entirely on AI inference and document generation.
+
+2.  **Schema parity is mandatory**  
+    Every field in the Word document **must exist in the JSON schema**  
+    Every field in the JSON schema **must exist in the Word document**  
+    Field names, types, sizes, and constraints must match exactly.
+
+3.  **Deterministic structure**
+    *   At least **6 sections**
+    *   At least **40 total fields**
+    *   Fields must be clearly identifiable and uniquely named
+
+4.  **Professional visual quality**  
+    The Word document must look like a real enterprise intake form, not a draft.
+
+5.  **Human‑in‑the‑loop aware**  
+    The solution must explicitly account for partial mapping, ambiguity, and review.
+
+***
+
+## 📄 Deliverables to Generate
+
+### **1. `Template.docx` — Complex, Visually Polished Form**
+
+Create a Word document with:
+
+*   **Minimum 6 clearly separated sections**, such as:
+    1.  Requestor / Applicant Information
+    2.  Organization / Account Details
+    3.  Request Overview
+    4.  Technical & Operational Details
+    5.  Compliance, Risk, or Constraints
+    6.  Approval, Sign‑off, and Metadata
+
+*   **At least 40 total fillable fields**, distributed across sections.
+
+Each field must include:
+
+*   Human‑readable label
+*   Placeholder token using this format:
+        <<FIELD_KEY>>
+*   Brief helper text describing expected content
+*   Required vs Optional indication
+
+**Design requirements:**
+
+*   Colored section headers
+*   Structured tables for form fields
+*   Subtle background shading
+*   Consistent typography
+*   Header banner or title section
+*   Footer with version + generation date
+*   Include **decorative images or icons** (banners, section icons, etc.) to make it visually polished
+
+***
+
+### **2. `schema.json` — Authoritative Field Definition**
+
+Generate a JSON schema that mirrors the Word template **exactly**.
+
+For every field, include:
+
+```json
+{
+  "key": "FIELD_KEY",
+  "section": "Section Name",
+  "label": "Human Readable Label",
+  "description": "What this field represents",
+  "type": "string | integer | number | boolean | date | datetime | enum",
+  "required": true | false,
+  "minLength": number,
+  "maxLength": number,
+  "allowedPattern": "regex (if applicable)",
+  "allowedCharactersDescription": "plain‑English explanation",
+  "enumValues": [],
+  "example": "example value"
+}
+```
+
+Schema must also include:
+
+*   Schema version
+*   Total field count
+*   Creation timestamp
+*   Validation notes
+
+***
+
+### **3. `DataMappingSpecification.md` — Mapping & Scoring Guide**
+
+Create a detailed specification that explains:
+
+#### A. Mapping Strategy
+
+*   How unstructured source data (emails, notes, documents, free‑text) is interpreted
+*   How fields are inferred using semantic meaning, proximity, and intent
+*   Normalization rules (dates, names, phone numbers, IDs, casing, etc.)
+
+#### B. Mapping Heuristics
+
+*   Keyword and phrase detection
+*   Contextual inference
+*   Confidence scoring per field (0.0–1.0)
+*   Conflict resolution when multiple candidates exist
+
+#### C. Failure Handling
+
+Explain what to do when:
+
+*   A field cannot be mapped
+*   A value violates schema constraints
+*   Source data is ambiguous
+*   Required fields are missing
+
+For each failure, explain:
+
+*   Why it failed
+*   How to fix it
+*   Whether human review is recommended
+
+#### D. Mapping Report & Grading
+
+Define a **point‑based scoring model**, for example:
+
+*   Total possible score (e.g., 100 points)
+*   Required fields weighted more heavily
+*   Partial credit for low‑confidence mappings
+
+Include:
+
+*   Grade bands (A–F)
+*   Sample mapping report structure
+*   Clear explanation of how final score is calculated
+
+#### E. Worked Example
+
+Include:
+
+*   Sample unstructured input text
+*   Resulting mapped JSON
+*   Example mapping report summary
+
+***
+
+### **4. `README.md` — Solution Overview & Usage**
+
+Explain clearly and professionally:
+
+*   **The problem being solved**
+    *   Hydrating structured document templates from unstructured data
+
+*   **Primary use case**
+    *   Automated or semi‑automated form completion
+
+*   **Additional use cases**
+    *   Intake forms
+    *   Insurance applications
+    *   Incident reports
+    *   HR onboarding
+    *   RFP responses
+    *   Compliance documentation
+    *   Legal or medical intake
+
+*   **How the pieces work together**
+    *   Word template
+    *   Schema
+    *   Mapping heuristics
+    *   Human review loop
+
+*   **How to extend the system**
+    *   Adding new fields
+    *   Modifying schema safely
+    *   Maintaining schema ↔ template parity
+
+*   **Quality checklist**
+    *   Field parity
+    *   Mapping confidence
+    *   Review thresholds
+
+***
+
+## ✅ Definition of Done
+
+The solution is complete only when:
+
+*   All four files exist in the target directory
+*   The Word template contains ≥6 sections and ≥40 fields
+*   The JSON schema matches the template exactly
+*   Mapping rules, grading, and reporting are unambiguous
+*   The system clearly supports **maximum automation with optional human review**
+*   The README provides a clear, professional overview and usage guide

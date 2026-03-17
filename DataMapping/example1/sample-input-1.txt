@@ -1,0 +1,50 @@
+From: Priya Nair
+Sent: Monday, March 16, 2026 4:47 PM
+To: IT Service Desk
+Subject: Need new cloud environment stood up ASAP
+
+Hey team,
+
+Hope you're doing well. I need to get a request in for a new cloud environment — this is for
+our Horizon project that's been greenlit by the exec team.
+
+Here's what I've got:
+
+My info:
+  Priya Nair
+  priya.nair@northwindtraders.com
+  Cell: 206-555-0743
+  I'm in the Digital Transformation department
+  My employee badge number is NWT-10224
+  My manager is David Chen
+
+We're Northwind Traders, our account is ACCT-77201-US. Charge it to cost center
+FIN-8832. We're in the Retail space, if that matters for any compliance stuff.
+
+Basically what we need: stand up a new staging environment for our Horizon data
+analytics platform. We're planning to run it on AWS — specifically EC2, RDS
+Postgres, and S3 — but honestly we're open to suggestions. The project depends
+on our Salesforce CRM and the internal data lake. We're estimating around 75
+users to start, maybe more as we scale. We'd like 99.9% uptime if possible.
+
+The data we'll be working with is mostly internal-only, no PII involved. We do
+need to comply with SOC 2 and our data needs to stay within the US. I'd say the
+risk is pretty low overall. We haven't done a security review yet but plan to
+before go-live. One constraint: all data at rest must use AES-256 encryption per
+our security policy.
+
+Priority: I'd say medium. We submitted this March 16, 2026 and ideally want
+it done by end of August — let's say August 31, 2026.
+
+The business case is straightforward: Horizon is our next-gen analytics platform
+that will replace three legacy BI tools. Consolidating onto one platform saves us
+an estimated $2.1M annually in licensing and support. The exec team approved
+budget in Q1 and we need the environment ready for UAT in Q3.
+
+For approval, please route to Anita Bowen at a.bowen@northwindtraders.com.
+Status is pending her sign-off.
+
+Let's call the document version 1.0 for now.
+
+Thanks!
+Priya

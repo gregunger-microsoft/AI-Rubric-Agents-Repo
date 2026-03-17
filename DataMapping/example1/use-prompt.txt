@@ -1,0 +1,12 @@
+Use this folder: C:\tempGregProj\ProfessorJarvisAIAgent\DataMapping\example1
+Create a folder named 'output' inside the 'example1' folder.
+
+Please map the following file I am uploading to the JSON schema document schema.json with as much accuracy as possible.
+
+You are an expert in data engineerin and data mapping. Please ensure that the mapped output adheres to the structure defined in the schema.json file.
+
+You MUST adhere to the DataMappingSpecification.md guidelines 100%.
+
+Create a new non-template file from the mapped output using the Template.docx file as a reference. 
+
+Save the new file in the 'output' folder with the name 'MappedOutput.docx'.
